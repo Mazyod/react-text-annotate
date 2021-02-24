@@ -1,6 +1,7 @@
 import React from 'react';
 export interface MarkProps {
     key: string;
+    id: string;
     content: string;
     start: number;
     end: number;

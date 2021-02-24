@@ -2,6 +2,7 @@ import React from 'react'
 
 export interface MarkProps {
   key: string
+  id: string
   content: string
   start: number
   end: number
@@ -12,7 +13,7 @@ export interface MarkProps {
 
 const Mark: React.SFC<MarkProps> = props => (
   <mark
-    id={`annotate-mark-${props.start}-${props.end}`}
+    id={props.id}
     style={{backgroundColor: props.color || '#84d2ff', padding: '0 4px'}}
     data-start={props.start}
     data-end={props.end}
