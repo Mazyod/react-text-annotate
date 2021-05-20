@@ -10,7 +10,6 @@ const Split = props => {
     <span
       data-start={props.start}
       data-end={props.end}
-      onClick={() => props.onClick({start: props.start, end: props.end})}
     >
       {props.content}
     </span>
@@ -43,7 +42,17 @@ const TextAnnotator = <T extends Span>(props: TextAnnotatorProps<T>) => {
 
     const selection = window.getSelection()
 
-    if (selectionIsEmpty(selection)) return
+    if (!selection.anchorNode?.parentElement || !selection.focusNode?.parentElement) {
+      return
+    }
+
+    let dataStart = parseInt(selection.anchorNode.parentElement.getAttribute('data-start'), 10)
+    let dataEnd = parseInt(selection.focusNode.parentElement.getAttribute('data-end'), 10)
+
+    if (selectionIsEmpty(selection)) {
+      handleSplitClick({start: dataStart, end: dataEnd})
+      return
+    }
 
     let start =
       parseInt(selection.anchorNode.parentElement.getAttribute('data-start'), 10) +
@@ -84,7 +93,7 @@ const TextAnnotator = <T extends Span>(props: TextAnnotatorProps<T>) => {
   return (
     <div style={style} onMouseUp={handleMouseUp}>
       {splits.map(split => (
-        <Split key={`${split.start}-${split.end}`} customMark={customMark} {...split} onClick={handleSplitClick} />
+        <Split key={`${split.start}-${split.end}`} customMark={customMark} {...split} />
       ))}
     </div>
   )

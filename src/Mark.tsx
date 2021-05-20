@@ -8,7 +8,6 @@ export interface MarkProps {
   end: number
   tag: string
   color?: string
-  onClick: (any) => any
 }
 
 const Mark: React.SFC<MarkProps> = props => (
@@ -17,7 +16,6 @@ const Mark: React.SFC<MarkProps> = props => (
     style={{backgroundColor: props.color || '#84d2ff', padding: '0 4px'}}
     data-start={props.start}
     data-end={props.end}
-    onClick={() => props.onClick({start: props.start, end: props.end})}
   >
     {props.content}
     {props.tag && (

@@ -35,7 +35,6 @@ const CustomMark = props => (
     }}
     data-start={props.start}
     data-end={props.end}
-    onClick={() => props.onClick({start: props.start, end: props.end})}
   >
       <u 
         style={{textDecorationColor: "red", textDecorationThickness: "0.15em"}}

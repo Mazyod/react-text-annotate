@@ -82,7 +82,6 @@ const TokenAnnotator = <T extends Span>(props: TokenAnnotatorProps<T>) => {
           rendermark({
             key: `${split.start}-${split.end}`,
             ...split,
-            onClick: handleSplitClick,
           })
         ) : (
           <Token key={split.i} {...split} />
