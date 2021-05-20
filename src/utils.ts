@@ -1,6 +1,6 @@
 import sortBy from 'lodash.sortby'
 
-export const splitWithOffsets = (text, offsets: {start: number; end: number}[]) => {
+export const splitWithOffsets = (text: string, offsets: {start: number; end: number}[]) => {
   let lastEnd = 0
   const splits = []
 
@@ -64,9 +64,9 @@ export const splitTokensWithOffsets = (text, offsets: {start: number; end: numbe
 }
 
 export const selectionIsEmpty = (selection: Selection) => {
-  let position = selection.anchorNode.compareDocumentPosition(selection.focusNode)
+  let position = selection.anchorNode?.compareDocumentPosition(selection.focusNode)
 
-  return position === 0 && selection.focusOffset === selection.anchorOffset
+  return !selection.anchorNode || (position === 0 && selection.focusOffset === selection.anchorOffset)
 }
 
 export const selectionIsBackwards = (selection: Selection) => {
