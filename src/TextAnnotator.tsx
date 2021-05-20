@@ -5,9 +5,7 @@ import {selectionIsEmpty, selectionIsBackwards, splitWithOffsets} from './utils'
 import {Span} from './span'
 
 const Split = props => {
-  if (props.mark) return <Mark {...props} />
-
-  return (
+  return props.mark ? <Mark {...props} /> : (
     <span
       data-start={props.start}
       data-end={props.end}
