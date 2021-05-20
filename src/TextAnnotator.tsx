@@ -33,8 +33,7 @@ type TextAnnotatorProps<T> = React.HTMLAttributes<HTMLDivElement> & TextBaseProp
 const TextAnnotator = <T extends Span>(props: TextAnnotatorProps<T>) => {
   const getSpan = (span: TextSpan): T => {
     // TODO: Better typings here.
-    if (props.getSpan) return props.getSpan(span) as T
-    return {start: span.start, end: span.end} as T
+    return (props.getSpan?.(span) ?? span) as T
   }
 
   const handleMouseUp = () => {
