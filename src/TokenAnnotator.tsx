@@ -25,12 +25,12 @@ export interface TokenAnnotatorProps<T>
   value: T[]
   onChange: (value: T[]) => any
   getSpan?: (span: TokenSpan) => T
-  renderMark?: (props: MarkProps) => JSX.Element
+  rendermark?: (props: MarkProps) => JSX.Element
   // TODO: determine whether to overwrite or leave intersecting ranges.
 }
 
 const TokenAnnotator = <T extends Span>(props: TokenAnnotatorProps<T>) => {
-  const renderMark = props.renderMark || (props => <Mark {...props} />)
+  const rendermark = props.rendermark || (props => <Mark {...props} />)
 
   const getSpan = (span: TokenSpan): T => {
     if (props.getSpan) return props.getSpan(span)
@@ -73,13 +73,13 @@ const TokenAnnotator = <T extends Span>(props: TokenAnnotatorProps<T>) => {
     }
   }
 
-  const {tokens, value, onChange, getSpan: _, ...divProps} = props
+  const {tokens, value, onChange, getSpan: _, rendermark: _1, ...divProps} = props
   const splits = splitTokensWithOffsets(tokens, value)
   return (
     <div {...divProps} onMouseUp={handleMouseUp}>
       {splits.map((split, i) =>
         split.mark ? (
-          renderMark({
+          rendermark({
             key: `${split.start}-${split.end}`,
             ...split,
             onClick: handleSplitClick,
