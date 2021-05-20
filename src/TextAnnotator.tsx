@@ -25,7 +25,7 @@ type TextBaseProps<T> = {
   content: string
   value: T[]
   customMark?: any
-  onChange: (value: T[]) => any
+  onChange?: (value: T[], changes: {}) => any
   getSpan?: (span: TextSpan) => T
   // TODO: determine whether to overwrite or leave intersecting ranges.
 }
@@ -62,7 +62,9 @@ const TextAnnotator = <T extends Span>(props: TextAnnotatorProps<T>) => {
       ;[start, end] = [end, start]
     }
 
-    props.onChange([...props.value, getSpan({start, end, text: content.slice(start, end)})])
+    const added = getSpan({start, end, text: content.slice(start, end)})
+    const value = [...props.value, added]
+    props.onChange(value, { added })
 
     window.getSelection().empty()
   }
@@ -71,7 +73,9 @@ const TextAnnotator = <T extends Span>(props: TextAnnotatorProps<T>) => {
     // Find and remove the matching split.
     const splitIndex = props.value.findIndex(s => s.start === start && s.end === end)
     if (splitIndex >= 0) {
-      props.onChange([...props.value.slice(0, splitIndex), ...props.value.slice(splitIndex + 1)])
+      const removed = props.value[splitIndex]
+      const value = [...props.value.slice(0, splitIndex), ...props.value.slice(splitIndex + 1)]
+      props.onChange(value, { removed })
     }
   }
 
