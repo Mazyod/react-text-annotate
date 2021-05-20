@@ -3,7 +3,8 @@ import {hot} from 'react-hot-loader'
 
 import {TextAnnotator, TokenAnnotator} from '../../src'
 
-const TEXT = `On Monday night , Mr. Fallon will have a co-host for the first time : The rapper Cardi B , who just released her first album, " Invasion of Privacy . "`
+const TEXT = `On Monday night , Mr. Fallon will have a co-host for the first time : 
+The rapper Cardi B , who just released her first album, " Invasion of Privacy . "`
 
 const TAG_COLORS = {
   ORG: '#00ffa2',
@@ -23,13 +24,53 @@ const Card = ({children}) => (
   </div>
 )
 
+const CustomMark = props => (
+  <span
+    id={props.id}
+    style={{
+      padding: "0 0.25em",
+      marginBottom: "5px",
+      display: "inline-block", 
+      verticalAlign: "top",
+    }}
+    data-start={props.start}
+    data-end={props.end}
+    onClick={() => props.onClick({start: props.start, end: props.end})}
+  >
+      <u 
+        style={{textDecorationColor: "red", textDecorationThickness: "0.15em"}}
+        data-start={props.start}
+        data-end={props.end}    
+      >
+        {props.content}
+      </u>
+      {props.tag && (
+        <span style={{userSelect: "none"}}>
+          <br />
+          <span 
+            style={{
+              display: "inline-block", 
+              padding: "0 0.2em",
+              fontSize: '0.85em', 
+              fontWeight: 500,
+              backgroundColor: "red",
+            }}
+            >
+              {props.tag} (role)
+            </span>
+        </span>
+      )}
+  </span>
+)
+
 class App extends React.Component<any, any> {
   state = {
-    value: [{start: 17, end: 19, tag: 'PERSON'}],
-    tag: 'PERSON',
+    value: [],
+    tag: 'person',
   }
 
   handleChange = value => {
+    console.log(value)
     this.setState({value})
   }
 
@@ -47,53 +88,24 @@ class App extends React.Component<any, any> {
           <Card>
             <h4>Default</h4>
             <select onChange={this.handleTagChange} value={this.state.tag}>
-              <option value="ORG">ORG</option>
-              <option value="PERSON">PERSON</option>
+              <option value="org">org</option>
+              <option value="person">person</option>
             </select>
-            <TokenAnnotator
+            <TextAnnotator
               style={{
                 fontFamily: 'IBM Plex Sans',
                 maxWidth: 500,
-                lineHeight: 1.5,
+                lineHeight: 1.2,
               }}
-              tokens={TEXT.split(' ')}
+              content={TEXT}
               value={this.state.value}
+              customMark={CustomMark}
               onChange={this.handleChange}
               getSpan={span => ({
                 ...span,
                 tag: this.state.tag,
                 color: TAG_COLORS[this.state.tag],
               })}
-            />
-          </Card>
-          <Card>
-            <h4>Custom rendered mark</h4>
-            <select onChange={this.handleTagChange} value={this.state.tag}>
-              <option value="ORG">ORG</option>
-              <option value="PERSON">PERSON</option>
-            </select>
-            <TokenAnnotator
-              style={{
-                fontFamily: 'IBM Plex Sans',
-                maxWidth: 500,
-                lineHeight: 1.5,
-              }}
-              tokens={TEXT.split(' ')}
-              value={this.state.value}
-              onChange={this.handleChange}
-              getSpan={span => ({
-                ...span,
-                tag: this.state.tag,
-                color: TAG_COLORS[this.state.tag],
-              })}
-              rendermark={props => (
-                <mark
-                  key={props.key}
-                  onClick={() => props.onClick({start: props.start, end: props.end})}
-                >
-                  {props.content} [{props.tag}]
-                </mark>
-              )}
             />
           </Card>
         </div>
