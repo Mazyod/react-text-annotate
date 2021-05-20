@@ -4,6 +4,8 @@
     // "noImplicitAny": truowe,
     "sourceMap": true,
     "jsx": "react",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
     "lib": ["es2016", "dom"]
   },
   "include": ["src/**/*"]
