@@ -7,7 +7,6 @@ export interface MarkProps {
     end: number;
     tag: string;
     color?: string;
-    onClick: (any: any) => any;
 }
 declare const Mark: React.SFC<MarkProps>;
 export default Mark;
