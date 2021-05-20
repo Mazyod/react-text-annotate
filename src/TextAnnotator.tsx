@@ -5,7 +5,8 @@ import {selectionIsEmpty, selectionIsBackwards, splitWithOffsets} from './utils'
 import {Span} from './span'
 
 const Split = props => {
-  return props.mark ? <Mark {...props} /> : (
+  const MarkClass = props.customMark ?? Mark;
+  return props.mark ? <MarkClass {...props} /> : (
     <span
       data-start={props.start}
       data-end={props.end}
@@ -23,6 +24,7 @@ interface TextSpan extends Span {
 type TextBaseProps<T> = {
   content: string
   value: T[]
+  customMark?: any
   onChange: (value: T[]) => any
   getSpan?: (span: TextSpan) => T
   // TODO: determine whether to overwrite or leave intersecting ranges.
@@ -73,12 +75,12 @@ const TextAnnotator = <T extends Span>(props: TextAnnotatorProps<T>) => {
     }
   }
 
-  const {content, value, style} = props
+  const {content, value, style, customMark} = props
   const splits = splitWithOffsets(content, value)
   return (
     <div style={style} onMouseUp={handleMouseUp}>
       {splits.map(split => (
-        <Split key={`${split.start}-${split.end}`} {...split} onClick={handleSplitClick} />
+        <Split key={`${split.start}-${split.end}`} customMark={customMark} {...split} onClick={handleSplitClick} />
       ))}
     </div>
   )
