@@ -12,7 +12,7 @@ export interface MarkProps {
 }
 
 const Mark: React.SFC<MarkProps> = props => (
-  <mark
+  <span
     id={props.id}
     style={{backgroundColor: props.color || '#84d2ff', padding: '0 4px'}}
     data-start={props.start}
@@ -23,7 +23,7 @@ const Mark: React.SFC<MarkProps> = props => (
     {props.tag && (
       <span style={{fontSize: '0.7em', fontWeight: 500, marginLeft: 6}}>{props.tag}</span>
     )}
-  </mark>
+  </span>
 )
 
 export default Mark
