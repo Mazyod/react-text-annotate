@@ -53,6 +53,12 @@ const TextAnnotator = <T extends Span>(props: TextAnnotatorProps<T>) => {
       parseInt(selection.focusNode.parentElement.getAttribute('data-start'), 10) +
       selection.focusOffset
 
+    // happens when selection starts/ends 
+    if (isNaN(start) || isNaN(end)) {
+      window.getSelection().empty()
+      return false
+    }
+
     if (selectionIsBackwards(selection)) {
       ;[start, end] = [end, start]
     }
