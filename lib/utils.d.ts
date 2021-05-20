@@ -1,4 +1,4 @@
-export declare const splitWithOffsets: (text: any, offsets: {
+export declare const splitWithOffsets: (text: string, offsets: {
     start: number;
     end: number;
 }[]) => any[];
