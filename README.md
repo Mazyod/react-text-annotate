@@ -1,6 +1,8 @@
 # react-text-annotate
 [![NPM](https://img.shields.io/npm/v/react-text-annotate)](https://www.npmjs.com/package/react-text-annotate)
 
+<img width="380" alt="image" src="https://user-images.githubusercontent.com/860511/123715258-91e43e00-d880-11eb-9939-e4580bb2c38e.png">
+
 A React component for interactively highlighting parts of text.
 
 ## Usage
