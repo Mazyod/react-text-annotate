@@ -3,13 +3,13 @@ import { Span } from './span';
 interface TextSpan extends Span {
     text: string;
 }
-declare type TextBaseProps<T> = {
+type TextBaseProps<T> = {
     content: string;
     value: T[];
     customMark?: any;
     onChange?: (value: T[], changes: {}) => any;
     getSpan?: (span: TextSpan) => T;
 };
-declare type TextAnnotatorProps<T> = React.HTMLAttributes<HTMLDivElement> & TextBaseProps<T>;
-declare const TextAnnotator: <T extends Span>(props: TextAnnotatorProps<T>) => JSX.Element;
+type TextAnnotatorProps<T> = React.HTMLAttributes<HTMLDivElement> & TextBaseProps<T>;
+declare const TextAnnotator: <T extends Span>(props: TextAnnotatorProps<T>) => React.JSX.Element;
 export default TextAnnotator;

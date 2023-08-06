@@ -14,23 +14,18 @@
   "devDependencies": {
     "@babel/polyfill": "^7.12.1",
     "@testing-library/react": "^10.0.2",
-    "@types/jest": "^25.2.1",
     "@types/node": "^12.0.0",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
     "babel-polyfill": "^6.26.0",
-    "docz": "^2.2.0",
     "fork-ts-checker-webpack-plugin": "^6.2.10",
-    "gh-pages": "^2.1.1",
     "html-webpack-plugin": "^5.3.1",
-    "jest": "^25.2.7",
     "prettier": "^1.19.1",
     "react": "^17.0.0",
     "react-dom": "^17.0.0",
     "react-hot-loader": "^4.0.1",
-    "ts-jest": "^25.3.1",
     "ts-loader": "^9.2.1",
-    "typescript": "^3.9.9",
+    "typescript": "^4.0.0",
     "webpack": "^5.37.1",
     "webpack-cli": "^4.7.0",
     "webpack-dev-server": "^3.11.2"
@@ -38,16 +33,10 @@
   "scripts": {
     "dev": "cd example && webpack serve --hot --history-api-fallback --mode development",
     "build": "rm -rf lib && tsc -p ./ --declaration --outDir lib/",
-    "prepublish": "npm run build",
-    "predeploy": "docz build",
-    "deploy": "gh-pages -d .docz/dist",
-    "docz:dev": "docz dev",
-    "docz:build": "docz build",
-    "docz:serve": "docz build && docz serve"
+    "prepublish": "npm run build"
   },
   "description": "[![NPM](https://img.shields.io/npm/v/react-text-annotate)](https://www.npmjs.com/package/react-text-annotate)",
   "directories": {
-    "doc": "docs",
     "example": "example",
     "lib": "lib"
   },

@@ -13,5 +13,5 @@ export interface TokenAnnotatorProps<T> extends Omit<React.HTMLAttributes<HTMLDi
     getSpan?: (span: TokenSpan) => T;
     rendermark?: (props: MarkProps) => JSX.Element;
 }
-declare const TokenAnnotator: <T extends Span>(props: TokenAnnotatorProps<T>) => JSX.Element;
+declare const TokenAnnotator: <T extends Span>(props: TokenAnnotatorProps<T>) => React.JSX.Element;
 export default TokenAnnotator;
