@@ -1,6 +1,6 @@
 {
   "name": "@mazyod/react-text-annotate",
-  "version": "0.3.1",
+  "version": "0.4.0",
   "main": "./lib/index.js",
   "types": "./lib/index.d.ts",
   "homepage": "https://github.com/careless10/react-text-annotate",
