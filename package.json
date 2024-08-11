@@ -1,6 +1,6 @@
 {
   "name": "@mazyod/react-text-annotate",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "main": "./lib/index.js",
   "types": "./lib/index.d.ts",
   "homepage": "https://github.com/careless10/react-text-annotate",
@@ -8,8 +8,8 @@
     "lodash.sortby": "^4.7.0"
   },
   "peerDependencies": {
-    "react": "^17.0.0",
-    "react-dom": "^17.0.0"
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
   },
   "devDependencies": {
     "@babel/polyfill": "^7.12.1",
